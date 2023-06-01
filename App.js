@@ -3,19 +3,21 @@ import {  Text, View, StyleSheet, Platform, SafeAreaView, StatusBar } from 'reac
 import Constants from 'expo-constants';
 import { colors } from './src/utils/colors';
 import { Focus } from './src/features/Focus';
+import { Countdown } from './src/components/Countdown';
+import { Timer } from './src/features/Timer';
 
 export default function App() {
-  const [currentSubject, setCurrentSubject] = useState(null);
+  const [currentSubject, setCurrentSubject] = useState('test');
   return (
     <SafeAreaView style={styles.container}>
       {!currentSubject ? (
         <Focus addSubject={setCurrentSubject} />
       ) : (
-        <View>
-          <Text style={{ color: colors.white }}>
-            I am going to render the timer for {currentSubject}
-          </Text>
-        </View>
+        <Timer 
+          focusSubject={currentSubject}
+          onTimerEnd={() => {}}
+          clearSubject={() => {}}
+          />
       )}
     </SafeAreaView>
   );
