@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, Platform, Vibration } from 'react-native';
 import { ProgressBar } from 'react-native-paper';
 import { Countdown } from '../components/Countdown';
 import { RoundedButton } from '../components/RoundedButton';
+import { Timing } from './Timing'
 import { spacing } from '../utils/sizes';
 import { colors } from '../utils/colors';
 
@@ -44,6 +45,9 @@ export const Timer = ({ focusSubject }) => {
           style={{ height: spacing.sm }}
         />
       </View>
+      <View style={styles.timingWrapper}>
+        <Timing onChangeTime={setMinutes} />
+      </View>
       <View style={styles.buttonWrapper}>
         {!isStarted && (
           <RoundedButton 
@@ -57,6 +61,13 @@ export const Timer = ({ focusSubject }) => {
             onPress={() => setIsStarted(false)}  
           />
         )}
+      </View>
+      <View style={styles.clearSubjectWrapper}>
+        <RoundedButton 
+          size={50} 
+          title='-' 
+          onPress={() => {}} 
+          />
       </View>
     </View>
   )
@@ -73,18 +84,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     // backgroundColor: 'yellow'
   },
+  timingWrapper: {
+    flex: 0.1,
+    paddingTop: spacing.xxl,
+    flexDirection: 'row',
+  },
   buttonWrapper: {
     flex: 0.3,
     flexDirection: 'row',
-    padding: 15,
+    padding: spacing.md,
     justifyContent: 'center',
     alignItems: 'center',
     // backgroundColor: 'yellow'
   },
+  clearSubjectWrapper:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
   title: {
     color: colors.white,
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   task: {
     color: colors.white,
